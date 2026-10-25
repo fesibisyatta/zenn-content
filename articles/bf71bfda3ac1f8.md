@@ -3,7 +3,7 @@ title: "標準 ベイズ統計学 第10章 演習問題 解答例"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["メトロポリスヘイスティングス", "反射型ランダムウォーク"]
-published: false
+published: true
 ---
 
 ## 演習問題10.1
