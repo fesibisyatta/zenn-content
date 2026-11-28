@@ -1024,6 +1024,68 @@ $$
 
 を得る.
 
+## 演習問題3.6
+### (a)
+
+$\displaystyle \int c(\phi) h(y) e^{\phi t(y)} d y = 1$ より, 両辺を $\phi$ で微分し, 微分と積分の順序交換を認めると
+
+$$
+\begin{aligned}
+
+\int c^\prime(\phi) h(y) e^{\phi t(y)} + c(\phi) h(y) t(y) e^{\phi t(y)}dy = 0
+
+\end{aligned}
+$$
+
+となるので, まとめると
+
+$$
+\begin{aligned}
+
+\int c(\phi) h(y)e^{\phi t(y)} \left(\frac{c^\prime(\phi)}{c(\phi)}  + t(y)  \right) dy = 0
+
+\end{aligned}
+$$
+
+となるので
+
+$$
+\begin{aligned}
+
+E \left[ t(y) \mid \phi \right] = - \frac{c^\prime(\phi)}{c(\phi)}
+
+\end{aligned}
+$$
+
+となる.
+
+### (b)
+
+$\phi$ の事前分布が, $p(\phi) = \kappa (n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi}$ で与えられるので
+
+$$
+\frac{dp(\phi)}{d \phi} = n_0 \kappa (n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi} \left( \frac{c^\prime(\phi)}{c(\phi)} + t_0  \right)
+$$
+
+である. 両辺を積分すると, 左辺は
+
+$$
+\int \frac{dp(\phi)}{d \phi} d \phi = \frac{d}{d \phi} \int p(\phi) d \phi = 0
+$$
+
+である. 一方, 右辺は
+
+$$
+\int n_0 \kappa (n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi} \left( \frac{c^\prime(\phi)}{c(\phi)} + t_0  \right) d \phi = n_0 E \left[\frac{c^\prime(\phi)}{c(\phi)} + t_0 \right]
+$$
+
+となる. 以上より
+
+$$
+E \left[ - \frac{c^\prime(\phi)}{c(\phi)} \right] = t_0
+$$
+
+を得る.
 
 ## 演習問題3.10
 ### (a)
@@ -1102,6 +1164,92 @@ plt.show()
 
 ![](/images/section-3/3-10-b.png)
 
+
+
+## 演習問題3.11
+### (a)
+
+$p(y \mid \theta) = {}_n \mathrm{C}_y \theta^y (1 - \theta)^{n - y}$ より
+
+
+$$
+\begin{aligned}
+\log p(y \mid \theta) &= \log {}_n \mathrm{C}_y + y \log \theta + (n - y) \log (1 - \theta) \\
+\frac{\partial }{\partial \theta} \log p(y \mid \theta) &= \frac{y}{\theta} - \frac{n - y}{1 - \theta} \\
+\frac{\partial^2 }{\partial \theta^2} \log p(y \mid \theta) &= - \frac{y}{\theta^2} - \frac{n - y}{(1 - \theta)^2} \\
+\end{aligned}
+$$
+
+となる. $E[Y] = n \theta$ であることを用いると
+
+$$
+\begin{aligned}
+
+E \left[ \frac{\partial^2 }{\partial \theta^2} \log p(y \mid \theta) \right] 
+    &= - \frac{n}{\theta} - \frac{n}{1 - \theta} \\
+    &= - \frac{n}{\theta(1 - \theta)} \\
+\end{aligned}
+$$
+
+となるので
+
+$$
+\begin{aligned}
+I(\theta) = \frac{n}{\theta(1 - \theta)}
+\end{aligned}
+$$
+
+を得る. 従って
+
+$$
+p_J(\theta) \propto \sqrt{\frac{n}{\theta (1 - \theta)}}
+$$
+
+を得る.
+
+### (b)
+
+$$
+\begin{aligned}
+p(y \mid \psi) &=  {}_n \mathrm{C}_y e^{\psi y} (1 + e^{\psi})^{-n} \\
+\log p(y \mid \psi) &= \log {}_n \mathrm{C}_y + y \psi - n \log (1 + e^\psi) \\
+\frac{\partial }{\partial \psi} \log p(y \mid \psi) &= y - \frac{n e^{\psi}}{1 + e^\psi} \\
+\frac{\partial^2 }{\partial \psi^2} \log p(y \mid \psi) &= - n \cdot \frac{e^\psi(1 + e^\psi) - e^\psi \cdot e^\psi }{(1 + e^\psi)^2} = - \frac{n e^\psi }{(1 + e^\psi)^2} \\
+\end{aligned}
+$$
+
+であるので
+
+$$
+I(\psi) = \frac{n e^\psi}{(1 + e^\psi)^2}
+$$
+
+を得る. 従って
+
+$$
+p_J (\psi) \propto \sqrt{\frac{n e^\psi}{(1 + e^\psi)^2}}
+$$
+
+を得る.
+
+### (c)
+$\psi = \log \frac{\theta}{1 - \theta}$ より
+
+$$
+\theta = \frac{e^\psi}{1 + e^\psi}
+$$
+
+であるので, (a)のジェフリーズ事前分布をもとに, 演習問題3.10の変数変換を行うと
+
+$$
+\begin{aligned}
+p_\psi (\psi) &= p_J (h(\psi)) \cdot \left|\frac{d h(\psi)}{d \psi} \right| \\
+    &\propto \sqrt{\frac{n}{\frac{e^\psi}{1 + e^\psi} \cdot \frac{1}{1 + e^\psi}}} \cdot  \frac{e^\psi}{(1 + e^{\psi})^2} \\
+    &= \sqrt{\frac{n e^\psi}{(1 + e^\psi)^2}} 
+\end{aligned}
+$$
+
+を得るので, (b) で得た結果と一致する.
 
 [^解釈]: 解釈まではよくわからなかった. 誰か詳しい人がいたらコメントが欲しいです.
 [^引用252]: p252の3.3の問題文
